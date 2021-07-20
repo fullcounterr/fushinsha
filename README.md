@@ -12,8 +12,11 @@ Why did I do this? I was talking about it with my friends and I ended up doing i
 #### 2. Creating multiple python script to help me parse the metadata for structuring purpose. 
 
 The first script is metabatch.py. This is used to index all books avaiable from the given metadata zip file into a single json file, which is included as manga.json located in this repository root.
+
 The second script is meta_each_books.py. This is used to process the metadata from the zip file included in the torrent. This includes artist, manga name, tags, and so on. Each books will have their own respective data.json file, which contains the page image name. The output will be saved into a newly created directory called "collected_data".
+
 The third script is mass_extract.py. This is used to extract all the .cbz file to their respective folder. The folder name is the first number in the file name, so if the file name is for example, "69 I love it.cbz", the folder name would be 69, which will be the books id. 
+
 The last script is thumbatch.py. This is used to process all the first page of every folder and resize it to a smaller .jpg file using OpenCV.
 
 All the process done in this step is essentials.
