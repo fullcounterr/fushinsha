@@ -1,0 +1,63 @@
+extends layout
+
+block content
+  .container-fluid
+      .row
+        .col-md-12
+          nav.navbar.navbar-expand-lg.navbar-light.bg-light.col-md-12
+            button.navbar-toggler(type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1')
+              span.navbar-toggler-icon
+            a.navbar-brand(href='/') HN Archive 
+            #bs-example-navbar-collapse-1.collapse.navbar-collapse
+              ul.navbar-nav
+                li.nav-item.active
+                  a.nav-link(href='/')
+                    | Link 
+                    span.sr-only (current)
+                li.nav-item
+                  a.nav-link(href='#') Link
+          each manga in data 
+              .row  
+                each val, key in manga 
+                  if key < 5
+                    .col-sm.d-flex.align-items-stretch         
+                      .card    
+                        img.card-img-top(alt=val.title src=val.thumbnail)
+                        .card-body
+                          h5.card-title
+                          p= val.title_conventional
+                          hr
+                          p
+                            a.btn.btn-primary(href='/read/'+val.gallery_id) Read
+
+              .row.mt-3 
+                each val, key in manga 
+                  if key >4
+                    .col-sm.d-flex.align-items-stretch         
+                      .card    
+                        img.card-img-top(alt=val.title src=val.thumbnail)
+                        .card-body
+                          h5.card-title
+                          p= val.title_conventional
+                          hr
+                          p
+                            a.btn.btn-primary(href='/read/'+val.gallery_id) Read
+                    
+      .row.mt-3
+        ul.pagination
+          - var a = data.page 
+          - var b = a-1
+          if b<1
+            li.page-item.disabled
+              a.page-link(href="?page="+b) Previous
+            li.page-item.active
+              a.page-link(href="?page="+a)=a++    
+            li.page-item
+              a.page-link(href="?page="+a) Next  
+          else 
+            li.page-item
+              a.page-link(href="?page="+b) Previous
+            li.page-item.active
+              a.page-link(href="?page="+a)=a++    
+            li.page-item
+              a.page-link(href="?page="+a) Next        
