@@ -30,7 +30,9 @@ The backend is written in express.js. The front end is written in pugjs and them
 The last most important part.. Now that the file has been prepared, metadata processed, backend and frontend is (kindof) ready, we need to make sure the file structure is in place.
 
 All the images is stored in */images/<books id>/<file_name_from_metadata>.png
+
 All the thumbimage is stored in */thumb/<books id>/cover.jpg
+
 All the collected books metadata stored in collected_data folder should be moved to this app root folder inside data folder. The folder has some example metadata.
 
 Note : * can be in any directory because it is hosted inside NGINX. Both folder must be inside the same server/domain, unless you know what you're doing.
