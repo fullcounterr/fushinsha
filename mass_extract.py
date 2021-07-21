@@ -12,7 +12,7 @@ for subdir, dirs, files in os.walk(os.getcwd()):
             l = file.split()
             print(file)
             with zipfile.ZipFile(filedir,'r') as zip_ref: 
-               zip_ref.extractall("\\images\\"+l[0])
+               zip_ref.extractall(".\\images\\"+l[0])
         else :
             break
         

@@ -9,15 +9,18 @@ The site is built using node.js, express.js, and bootstrap, with image backend h
 Why did I do this? I was talking about it with my friends and I ended up doing it. It took 2 hours to parse all the metadata and archive, and about a day to create the api backend and frontend (note : I'm not a master in frontend so sorry for the crappy UI, I only made it so I can check if the site loads data from the API).
 
 #### 1. Downloading the torrent file AND the metadata. Both are essentials.
+
+Extract the Metadata.7z to a directory. We'll use this directory to process the metadata
+
 #### 2. Creating multiple python script to help me parse the metadata for structuring purpose. 
 
-The first script is metabatch.py. This is used to index all books avaiable from the given metadata zip file into a single json file, which is included as manga.json located in this repository root.
+The first script is metabatch.py. Put this inside the extracted Metadata.7z directory, alongside the title folder. This is used to index all books avaiable from the given metadata zip file into a single manga.json file.
 
-The second script is meta_each_books.py. This is used to process the metadata from the zip file included in the torrent. This includes artist, manga name, tags, and so on. Each books will have their own respective data.json file, which contains the page image name. The output will be saved into a newly created directory called "collected_data".
+The second script is meta_each_books.py. Put this in the same dir as metabatch.py. This is used to process the metadata from the zip file included in the torrent. This includes artist, manga name, tags, and so on. Each books will have their own respective data.json file, which contains the page image name. The output will be saved into a newly created directory called "collected_data".
 
-The third script is mass_extract.py. This is used to extract all the .cbz file to their respective folder. The folder name is the first number in the file name, so if the file name is for example, "69 I love it.cbz", the folder name would be 69, which will be the books id. 
+The third script is mass_extract.py. Put this alongside the .cbz files. This is used to extract all the .cbz file to their respective folder. The folder name is the first number in the file name, so if the file name is for example, "69 I love it.cbz", the folder name would be 69, which will be the books id. 
 
-The last script is thumbatch.py. This is used to process all the first page of every folder and resize it to a smaller .jpg file using OpenCV.
+The last script is thumbatch.py. Put this outside the "images" folder created by mass_extract.py. This is used to process all the first page of every folder and resize it to a smaller .jpg file using OpenCV.
 
 All the process done in this step is essentials.
 
