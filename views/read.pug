@@ -4,11 +4,11 @@ block content
   .container-fluid
       .row
         .col-md-12
-          nav.navbar.navbar-expand-lg.navbar-light.bg-light.col-md-12
-            button.navbar-toggler(type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1')
-              span.navbar-toggler-icon
+          nav.navbar.navbar-expand-lg.navbar-light.bg-light
             a.navbar-brand(href='/') HN Archive 
-            #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#hn-navbar' aria-controls='hn-navbar' aria-expanded='false' aria-label='Toggle navigation')
+              span.navbar-toggler-icon
+            #hn-navbar.collapse.navbar-collapse
               ul.navbar-nav
                 li.nav-item.active
                   a.nav-link(href='/')
@@ -32,4 +32,4 @@ block content
             img.img-fluid(src='https://images.elscione.com/images/'+data.id+'/'+data.index[data.page])
         .col
             
-            
+  script(src='/js/bootstrap/bootstrap.bundle.min.js')
