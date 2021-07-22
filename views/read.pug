@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .container
+  .container-fluid
       .row
         .col-md-12
           nav.navbar.navbar-expand-lg.navbar-light.bg-light.col-md-12
@@ -16,23 +16,20 @@ block content
                     span.sr-only (current)
                 li.nav-item
                   a.nav-link(href='/') Link
-                //- li.nav-item
-                //-   .input-group
-                //-   .form-outline
-                //-     label.form-label(for='form1') Search
-                //-     button.btn.btn-primary(type='button')
-                //-       i.fas.fa-search
-
-             
+                li.nav-item
+                  form(action='/search', method='GET')
+                    .input-group
+                      .form-outline
+                      input#search.form-control(type='text' name='query')
+                      button.btn.btn-primary(type='submit') Search
+                        i.fas.fa-search  
       .row  
         .col
-        .col6
+        .col-xl-6
           - var id = data.id 
           - var current = parseInt(data.page)
           a(href="?page="+(current+1))
-            .col-md-6
             img.img-fluid(src='https://images.elscione.com/images/'+data.id+'/'+data.index[data.page])
-
         .col
-          
+            
             

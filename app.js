@@ -5,6 +5,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var readRouter = require('./routes/reader');
+var searchRouter = require('./routes/search');
 
 var app = express();
 var mangadb = require('./manga.json');
@@ -20,6 +21,7 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/read', readRouter);
+app.use('/search', searchRouter);
 app.set('view engine', 'pug');
 var fs = require('fs'), obj
 

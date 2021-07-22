@@ -58,22 +58,45 @@ block content
           if b<1
             if pc == 1
               li.page-item.disabled
-                a.page-link(href="?page="+b) Previous
+                a.page-link(href="?query="+searchQuery+"&page="+b) Previous
               li.page-item.active
-                a.page-link(href="?page="+a)=a++    
+                a.page-link(href="?query="+searchQuery+"&page="+a)=a++    
               li.page-item.disabled
-                a.page-link(href="?page="+a) Next 
+                a.page-link(href="?query="+searchQuery+"&page="+a) Next 
+            else if data.page == data.pageCount
+              li.page-item
+                a.page-link(href="?query="+searchQuery+"&page="+b) Previous
+              li.page-item.active
+                a.page-link(href="?query="+searchQuery+"&page="+a)=a++    
+              li.page-item.disabled
+                a.page-link(href="?query="+searchQuery+"&page="+a) Next  
             else
               li.page-item.disabled
-                a.page-link(href="?page="+b) Previous
+                a.page-link(href="?query="+searchQuery+"&page="+b) Previous
               li.page-item.active
-                a.page-link(href="?page="+a)=a++    
+                a.page-link(href="?query="+searchQuery+"&page="+a)=a++    
               li.page-item
-                a.page-link(href="?page="+a) Next  
+                a.page-link(href="?query="+searchQuery+"&page="+a) Next  
           else 
-            li.page-item
-              a.page-link(href="?page="+b) Previous
-            li.page-item.active
-              a.page-link(href="?page="+a)=a++    
-            li.page-item
-              a.page-link(href="?page="+a) Next        
+            if data.page == 1
+              li.page-item.disabled
+                a.page-link(href="?query="+searchQuery+"&page="+b) Previous
+              li.page-item.active
+                a.page-link(href="?query="+searchQuery+"&page="+a)=a++    
+              li.page-item.disabled
+                a.page-link(href="?query="+searchQuery+"&page="+a) Next 
+            if data.page == data.pageCount
+              li.page-item
+                a.page-link(href="?query="+searchQuery+"&page="+b) Previous
+              li.page-item.active
+                a.page-link(href="?query="+searchQuery+"&page="+a)=a++    
+              li.page-item.disabled
+                a.page-link(href="?query="+searchQuery+"&page="+a) Next  
+            else
+              li.page-item
+                a.page-link(href="?query="+searchQuery+"&page="+b) Previous
+              li.page-item.active
+                a.page-link(href="?query="+searchQuery+"&page="+a)=a++    
+              li.page-item
+                a.page-link(href="?query="+searchQuery+"&page="+a) Next  
+            

@@ -23,7 +23,12 @@ router.route('/:id')
         }, function (error, response, body){
           if(!error && response.statusCode == 200){
             var locals = JSON.parse(body);
-            res.render('read', {data: locals});
+            if(!locals.index){
+              res.send('End of chapter');
+            } else {
+              res.render('read', {data: locals});
+            }
+            
           }
         })
       }
