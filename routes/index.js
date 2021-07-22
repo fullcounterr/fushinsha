@@ -13,7 +13,7 @@ router.route('/')
       }, function (error, response, body){
         if(!error && response.statusCode == 200){
           var locals = JSON.parse(body);
-          res.render('index', {data: locals});
+          res.render('index', {data: locals, title: 'HN Archive | Home'});
         }
       })
     } else {
@@ -24,7 +24,7 @@ router.route('/')
       }, function (error, response, body){
         if(!error && response.statusCode == 200){
           var locals = JSON.parse(body);
-          res.render('index', {data: locals});
+          res.render('index', {data: locals, title: 'HN Archive | Page '+req.query.page });
         }
       })
     }

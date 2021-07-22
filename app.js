@@ -74,10 +74,12 @@ app.get("/api/manga/read/:id", (req, res, next) => {
     fs.readFile("data/manga/"+req.params.id+"/data.json", 'utf8', function (err, data) {
       if (err) throw err;
       obj = JSON.parse(data);
+      const titleName = mangadb.filter((m) => m.gallery_id == req.params.id)
       reqPages = parseInt(req.query.page)
       sendData = obj[reqPages-1]
       res.json({
         "id" : req.params.id,
+        "title" : titleName[0].title_conventional,
         "page" : req.query.page,
         "index" : sendData
       });
