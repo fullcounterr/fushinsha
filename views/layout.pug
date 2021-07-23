@@ -4,4 +4,28 @@ html
     title= title
     link(rel='stylesheet', href='/css/bootstrap/bootstrap.min.css')
   body
-    block content
+    .container-fluid
+      .row
+        .col-md-12
+          nav.navbar.navbar-expand-lg.navbar-light.bg-light
+            a.navbar-brand(href='/') HN Archive 
+            button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#hn-navbar' aria-controls='hn-navbar' aria-expanded='false' aria-label='Toggle navigation')
+              span.navbar-toggler-icon
+            #hn-navbar.collapse.navbar-collapse
+              ul.navbar-nav
+                li.nav-item.active
+                  a.nav-link(href='/') Home
+                li.nav-item
+                  a.nav-link(href='https://github.com/fullcounterr/fushinsha') Github
+                li.nav-item
+                  form(action='/search', method='GET')
+                    .input-group
+                      .form-outline
+                      input#search.form-control(type='text' name='query')
+                      button.btn.btn.btn-secondary.dropdown-toggle(type='button')
+                        ul.dropdown-menu  
+                          li
+                            a.dropdown-item Action
+                      button.btn.btn-primary(type='submit') Search
+                        i.fas.fa-search  
+      block content

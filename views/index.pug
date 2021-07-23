@@ -1,80 +1,64 @@
 extends layout
 
 block content
-  .container-fluid
-      .row
-        .col-md-12
-          nav.navbar.navbar-expand-lg.navbar-light.bg-light
-            a.navbar-brand(href='/') HN Archive 
-            button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#hn-navbar' aria-controls='hn-navbar' aria-expanded='false' aria-label='Toggle navigation')
-              span.navbar-toggler-icon
-            #hn-navbar.collapse.navbar-collapse
-              ul.navbar-nav
-                li.nav-item.active
-                  a.nav-link(href='/')
-                    | Link 
-                    span.sr-only (current)
-                li.nav-item
-                  a.nav-link(href='/') Link
-                li.nav-item
-                  form(action='/search', method='GET')
-                    .input-group
-                      .form-outline
-                      input#search.form-control(type='text' name='query')
-                      button.btn.btn-primary(type='submit') Search
-                        i.fas.fa-search  
-          each manga in data 
-              .row  
-                each val, key in manga 
-                  if key < 5
-                    .col-sm.d-flex.align-items-stretch         
-                      .card    
-                        img.card-img-top(alt=val.title src=val.thumbnail)
-                        .card-body
-                          h5.card-title
-                          p= val.title_conventional
-                          hr
-                          p
-                            a.btn.btn-primary(href='/read/'+val.gallery_id) Read
+  each manga in data 
+    .row  
+      each val, key in manga 
+        if key < 5
+          .col-sm.d-flex.align-items-stretch         
+            .card    
+              img.card-img-top(alt=val.title src=val.thumbnail)
+              .card-body
+                h5.card-title
+                p= val.title_conventional
+                hr
+                each tags in val.tags 
+                  a.badge.bg-dark(href='/search?query='+tags)=tags  
+                hr
+                p
+                  a.btn.btn-primary(href='/read/'+val.gallery_id) Read
 
-              .row.mt-3 
-                each val, key in manga 
-                  if key >4
-                    .col-sm.d-flex.align-items-stretch         
-                      .card    
-                        img.card-img-top(alt=val.title src=val.thumbnail)
-                        .card-body
-                          h5.card-title
-                          p= val.title_conventional
-                          hr
-                          p
-                            a.btn.btn-primary(href='/read/'+val.gallery_id) Read
-                    
-      .row.mt-3
-        ul.pagination
-          - var a = data.page 
-          - var pc = data.pageCount
-          - var b = a-1
-          if b<1
-            if pc == 1
-              li.page-item.disabled
-                a.page-link(href="?page="+b) Previous
-              li.page-item.active
-                a.page-link(href="?page="+a)=a++    
-              li.page-item.disabled
-                a.page-link(href="?page="+a) Next 
-            else
-              li.page-item.disabled
-                a.page-link(href="?page="+b) Previous
-              li.page-item.active
-                a.page-link(href="?page="+a)=a++    
-              li.page-item
-                a.page-link(href="?page="+a) Next  
-          else 
-            li.page-item
-              a.page-link(href="?page="+b) Previous
-            li.page-item.active
-              a.page-link(href="?page="+a)=a++    
-            li.page-item
-              a.page-link(href="?page="+a) Next        
+    .row.mt-3 
+      each val, key in manga 
+        if key >4
+          .col-sm.d-flex.align-items-stretch         
+            .card    
+              img.card-img-top(alt=val.title src=val.thumbnail)
+              .card-body
+                h5.card-title
+                p= val.title_conventional
+                hr
+                each tags in val.tags 
+                  a.badge.bg-dark(href='/search?query='+tags)=tags  
+                hr
+                p
+                  a.btn.btn-primary(href='/read/'+val.gallery_id) Read
+          
+  .row.mt-3
+    ul.pagination
+      - var a = data.page 
+      - var pc = data.pageCount
+      - var b = a-1
+      if b<1
+        if pc == 1
+          li.page-item.disabled
+            a.page-link(href="?page="+b) Previous
+          li.page-item.active
+            a.page-link(href="?page="+a)=a++    
+          li.page-item.disabled
+            a.page-link(href="?page="+a) Next 
+        else
+          li.page-item.disabled
+            a.page-link(href="?page="+b) Previous
+          li.page-item.active
+            a.page-link(href="?page="+a)=a++    
+          li.page-item
+            a.page-link(href="?page="+a) Next  
+      else 
+        li.page-item
+          a.page-link(href="?page="+b) Previous
+        li.page-item.active
+          a.page-link(href="?page="+a)=a++    
+        li.page-item
+          a.page-link(href="?page="+a) Next        
   script(src='/js/bootstrap/bootstrap.bundle.min.js')

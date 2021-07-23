@@ -96,10 +96,10 @@ app.get("/api/manga/search/", (req, res, next) => {
 });
 
 app.get("/api/manga/search/:search", (req, res, next) => {
-  var mangaView = mangadb.filter((m) => m.title_conventional.toLowerCase().includes(req.params.search.toLowerCase()))
-  
-  console.log(mangaView)
-  var pageCount = Math.ceil(mangaView.length / 10);
+  var nameSearch = mangadb.filter((m) => m.title_conventional.toLowerCase().includes(req.params.search.toLowerCase()))
+  var tagSearch = mangadb.filter((m) => m.tags.some(n => n === req.params.search.toLowerCase()))
+  var finalSearch = Object.assign(nameSearch, tagSearch)
+  var pageCount = Math.ceil(finalSearch.length / 10);
   let page = parseInt(req.query.page);
   if (!page) { page = 1;}
   if (page > pageCount) {
@@ -108,7 +108,7 @@ app.get("/api/manga/search/:search", (req, res, next) => {
   res.json({
     "page": page,
     "pageCount": pageCount,
-    "manga": mangaView.slice(page * 10 - 10, page * 10)
+    "manga": finalSearch.slice(page * 10 - 10, page * 10)
   });
 });
 
