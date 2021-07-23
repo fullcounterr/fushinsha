@@ -92,7 +92,18 @@ app.get("/api/manga/read/:id", (req, res, next) => {
 // Return : JSON file with matched name, paginated, 10 each page.
 // No error handling yet
 app.get("/api/manga/search/", (req, res, next) => {
-  return res.send("No search parameter included.")
+  const pageCount = Math.ceil(mangadb.length / 10);
+  let page = parseInt(req.params.page);
+  if (!page) { page = 1;}
+  if (page > pageCount) {
+    page = pageCount
+  }
+  res.json({
+    "page": page,
+    "pageCount": pageCount,
+    "limit" : 10,
+    "manga": mangadb.slice(page * 10 - 10, page * 10)
+  })
 });
 
 app.get("/api/manga/search/:search", (req, res, next) => {
