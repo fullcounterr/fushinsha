@@ -1,13 +1,12 @@
 extends layout
 
 block content
-      .row  
-        .col
-        .col-xl-6
-          - var id = data.id 
-          - var current = parseInt(data.page)
-          a(href="?page="+(current+1))
-            img.img-fluid(src='https://images.elscione.com/images/'+data.id+'/'+data.index[data.page])
-        .col
-            
+  .row  
+    .col
+    .col-xl-6
+      - var id = data.id 
+      - var current = parseInt(data.page)
+      a(href="?page="+(current+1))
+        img.img-fluid(src='https://images.elscione.com/images/'+data.id+'/'+data.index[data.page])
+    .col        
   script(src='/js/bootstrap/bootstrap.bundle.min.js')
