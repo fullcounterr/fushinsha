@@ -63,7 +63,17 @@ app.get("/api/manga/view/:id", (req, res, next) => {
 app.get("/api/manga/read/:id", (req, res, next) => {
   if(!req.query.page){
     fs.readFile("data/manga/"+req.params.id+"/data.json", 'utf8', function (err, data) {
-      if (err) throw err;
+      if (err) {
+        switch (err.code) {
+          case "ENOENT":
+            res.status(404).end();
+            break;
+          default:
+            console.log(err.code);
+            res.status(500).end();
+        }
+        return;
+      };
       obj = JSON.parse(data);
       res.json({
         "id" : req.params.id,
@@ -72,7 +82,17 @@ app.get("/api/manga/read/:id", (req, res, next) => {
     });
   } else if (req.query.page){
     fs.readFile("data/manga/"+req.params.id+"/data.json", 'utf8', function (err, data) {
-      if (err) throw err;
+      if (err) {
+        switch (err.code) {
+          case "ENOENT":
+            res.status(404).end();
+            break;
+          default:
+            console.log(err.code);
+            res.status(500).end();
+        }
+        return;
+      };
       obj = JSON.parse(data);
       const titleName = mangadb.filter((m) => m.gallery_id == req.params.id)
       reqPages = parseInt(req.query.page)
