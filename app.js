@@ -3,7 +3,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var readRouter = require('./routes/reader');
 var searchRouter = require('./routes/search');
 
@@ -20,7 +19,6 @@ app.use('/css/bootstrap/', express.static(__dirname + '/node_modules/bootstrap/d
 app.use('/js/bootstrap/', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/read', readRouter);
 app.use('/search', searchRouter);
 app.set('view engine', 'pug');
