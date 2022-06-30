@@ -28,7 +28,7 @@ All the process done in this step is essentials.
 
 The backend is written in express.js. The front end is written in pugjs and theming is done using Bootstrap v5. The image file is hosted behind NGINX.
 
-### 4. Prepare the file structure
+#### 4. Prepare the file structure
 
 The last most important part.. Now that the file has been prepared, metadata processed, backend and frontend is (kindof) ready, we need to make sure the file structure is in place.
 
