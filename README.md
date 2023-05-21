@@ -2,7 +2,7 @@
 
 THIS IS A VERY BUGGY CODE, I PUT IT HERE SO I CAN CHECK IT EASIER
 
-This repository contains the backend of HN Archive site at (WARNING!! NSFW SITE!!) [this link](https://nexus.elscione.com).  
+This repository contains the backend of HN Archive site.  
 The site is built using node.js, express.js, and bootstrap, with image backend hosted using nginx. The data on the site is processed from [this link](https://sukebei.nyaa.si/view/3274915).
 
 ### The Revival Process
