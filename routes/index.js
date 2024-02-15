@@ -1,34 +1,19 @@
 var express = require('express');
-var request = require('request');
+const axios = require('axios');
 var router = express.Router();
 
 
 router.route('/')
-  .get(function(req, res){
-    if (!req.query.page){
-      request({
-        method: 'GET',
-        uri: 'http://localhost:3000/api/manga/list/1'
-        
-      }, function (error, response, body){
-        if(!error && response.statusCode == 200){
-          var locals = JSON.parse(body);
-          res.render('index', {data: locals, title: 'HN Archive | Home'});
-        }
-      })
-    } else {
-      request({
-        method: 'GET',
-        uri: 'http://localhost:3000/api/manga/list/'+req.query.page
-        
-      }, function (error, response, body){
-        if(!error && response.statusCode == 200){
-          var locals = JSON.parse(body);
-          res.render('index', {data: locals, title: 'HN Archive | Page '+req.query.page });
-        }
-      })
+  .get(async function (req, res) {
+    try {
+      let page = req.query.page || '1';
+      let title = 'HN Archive | ' + (req.query.page ? ('Page ' + req.query.page) : 'Home');
+      const response = await axios.get('https://nexus.elscione.com/api/manga/list/' + page);
+      res.render('index', { data: response.data, title: title });
     }
-
+    catch (error) {
+      res.status(error.response.status).send(error.response.statusText);
+    }
   });
 
 
